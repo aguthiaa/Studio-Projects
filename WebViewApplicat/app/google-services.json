@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "306115906135",
+    "firebase_url": "https://webviewapplicat.firebaseio.com",
+    "project_id": "webviewapplicat",
+    "storage_bucket": "webviewapplicat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306115906135:android:15f2c4ac388b3655413112",
+        "android_client_info": {
+          "package_name": "com.peter.webviewapplicat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306115906135-sla46nhqpe9a2luinravqv5td63qnv7i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.peter.webviewapplicat",
+            "certificate_hash": "4f2ee897fe3255dfa506c05d3177ecaad376efe1"
+          }
+        },
+        {
+          "client_id": "306115906135-6gc9fb662qvk3jap6254kbgemp82gpfd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8ARAYX4h1QT74g3lJVhtOA57n7MrawIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306115906135-6gc9fb662qvk3jap6254kbgemp82gpfd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

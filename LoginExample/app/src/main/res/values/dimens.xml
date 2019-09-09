@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="l_margins">80sp</dimen>
+    <dimen name="r_margins">90sp</dimen>
+    <dimen name="t_margins">20sp</dimen>
+    <dimen name="t_size">20sp</dimen>
+    <dimen name="t_margin">80sp</dimen>
+    <dimen name="txt_margins">15sp</dimen>
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TvRegisterReview</string>
+    <string name="sign_in_here">Sign in here</string>
+    <string name="welcome_to_tv_player">Welcome to Tv Player</string>
+    <string name="email">Email</string>
+    <string name="don_t_have_an_account_register_here">Don\'t have an account? Register here</string>
+    <string name="login">Login</string>
+</resources>

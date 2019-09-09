@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="125dp"
+    android:layout_marginTop="@dimen/top_Margin"
+    tools:context=".ChannelActivity">
+    <Button
+        android:id="@+id/buttonKtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KTN"
+        android:onClick="ktn"/>
+    <Button
+        android:id="@+id/buttonK24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonKtn"
+        android:text="K24"
+        android:layout_marginTop="@dimen/top_Margin"
+        android:onClick="k24"/>
+    <Button
+        android:id="@+id/buttonAljazeera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonK24"
+        android:layout_marginTop="@dimen/top_Margin"
+        android:text="Aljazeera"
+        android:onClick="aljazeera"/>
+    <Button
+        android:id="@+id/buttonCnn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonAljazeera"
+        android:layout_marginTop="@dimen/top_Margin"
+        android:text="CNN"
+        android:onClick="cnn"/>
+
+</RelativeLayout>

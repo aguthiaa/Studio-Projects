@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "168654880291",
+    "firebase_url": "https://ourtv-f0182.firebaseio.com",
+    "project_id": "ourtv-f0182",
+    "storage_bucket": "ourtv-f0182.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168654880291:android:0df4e77f8871862fd5bb96",
+        "android_client_info": {
+          "package_name": "com.peter.ourtv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168654880291-ngl7ppm13ji85kg1oo9mvio9s40ashf4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.peter.ourtv",
+            "certificate_hash": "4f2ee897fe3255dfa506c05d3177ecaad376efe1"
+          }
+        },
+        {
+          "client_id": "168654880291-oe4hiki4ajsig0db4bhp6l4dcnf8p5e6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgF-ZQW_zfOuKQyDGm-7FPgnSUgSupQD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168654880291-oe4hiki4ajsig0db4bhp6l4dcnf8p5e6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#2DFF9800"
+    tools:context=".RegisterActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="One Nutrition One Nation"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:fontFamily="casual"
+        android:textColor="#CAE91E63"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mission: To prevent and manage childhood obesity,diabetes and hypertension and use digital media to shape the future of health care"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:fontFamily="cursive"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_Top"
+        android:textAlignment="center"
+        android:text="Sing up here."
+        android:textSize="24sp"
+        android:fontFamily="cursive"/>
+    <EditText
+        android:id="@+id/editTextFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_Top"
+        android:hint="First Name."/>
+    <EditText
+        android:id="@+id/editTextLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_Top"
+        android:hint="Last Name."/>
+    <EditText
+        android:id="@+id/editTextRegEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_Top"
+        android:inputType="textEmailAddress"
+        android:hint="Email."/>
+    <EditText
+        android:id="@+id/editTextRegPassword1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_Top"
+        android:inputType="textPassword"
+        android:hint="Password."/>
+    <EditText
+        android:id="@+id/editTextRegPassword2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_Top"
+        android:inputType="textPassword"
+        android:hint="Confirm Password."/>
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_Top"
+        android:text="Join"/>
+    <TextView
+        android:id="@+id/registerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_Top"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:text="Already have an account? Sign in here."
+        android:textColor="#0000ff"/>
+
+</LinearLayout>

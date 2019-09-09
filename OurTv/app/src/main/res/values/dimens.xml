@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="fab_margin">8dp</dimen>
+    <dimen name="text_padding">4sp</dimen>
+    <dimen name="margin_Top">15dp</dimen>
+    <dimen name="text_Size">18sp</dimen>
+    <dimen name="largeText_Size">64sp</dimen>
+    <dimen name="ImgMargins">20dp</dimen>
+    <dimen name="textMarginTop">10dp</dimen>
+</resources>

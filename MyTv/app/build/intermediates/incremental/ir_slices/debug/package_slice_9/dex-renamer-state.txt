@@ -1,0 +1,4 @@
+#Tue Sep 03 21:07:35 EAT 2019
+base.0=/home/mwanga/AndroidStudioProjects/MyTv/app/build/intermediates/transforms/dexMerger/debug/9
+path.0=classes.dex
+renamed.0=classes.dex

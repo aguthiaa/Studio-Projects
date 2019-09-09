@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#B58A5F0A"
+    android:padding="4sp"
+    tools:context=".MainActivity">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registration"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/txt_color"
+            android:background="#000000"
+            android:padding="@dimen/txt_padding"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Join This now - it's free!"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:textColor="@color/txt_color"
+            android:padding="@dimen/txt_padding"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/txt_color"
+        android:layout_marginTop="@dimen/txt_padding"
+        android:padding="@dimen/txt_padding">
+        <EditText
+            android:id="@+id/first_Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="First name"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"/>
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password (6 or more characters)"
+            android:inputType="textPassword"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You agree to This User Agreement, Privacy Policy, and Cookie Policy"
+        android:textSize="15sp"
+        android:textColor="@color/txt_color"
+        android:padding="@dimen/txt_padding"/>
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="join"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Already have an account? Login"
+        android:padding="@dimen/txt_padding"
+        android:textAlignment="center"
+        android:textColor="@color/txt_color"
+        android:textSize="15sp"/>
+
+</LinearLayout>

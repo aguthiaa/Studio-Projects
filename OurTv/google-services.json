@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "458297919078",
+    "firebase_url": "https://warm-axle-251720.firebaseio.com",
+    "project_id": "warm-axle-251720",
+    "storage_bucket": "warm-axle-251720.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458297919078:android:ba78a902f9b9ca42",
+        "android_client_info": {
+          "package_name": "com.peter.mytvapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "458297919078-dt1v7bi29418mqoifkdjgkdq0ce0n42g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.peter.mytvapp",
+            "certificate_hash": "4f2ee897fe3255dfa506c05d3177ecaad376efe1"
+          }
+        },
+        {
+          "client_id": "458297919078-h4cbt56mboc8l0vkvv5hgtcsi9f33522.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD31sOMqyW9qMIL4It1SKpOgrJyk3hRTIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "458297919078-h4cbt56mboc8l0vkvv5hgtcsi9f33522.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
