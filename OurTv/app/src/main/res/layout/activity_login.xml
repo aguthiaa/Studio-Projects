@@ -65,9 +65,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" Sign up here"
-            android:textColor="#0000ff"
+            android:textColor="#A00000FF"
             android:textSize="@dimen/text_Size"/>
+
     </LinearLayout>
+    <TextView
+        android:id="@+id/textViewForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/textMarginTop"
+        android:text="Forgot Password ?"
+        android:layout_gravity="center"
+        android:textColor="#8C0000FF"
+        android:textSize="16sp"/>
 
 
 </LinearLayout>

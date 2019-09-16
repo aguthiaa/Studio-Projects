@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     DatabaseReference myRef;
 
     ProgressDialog myDialog;
-    private EditText fname,lname,email,password,password2;
+    private EditText fname, lname, email, password, password2;
     private TextView loginText;
     private Button regButton;
 
@@ -42,9 +42,9 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
-        myRef= FirebaseDatabase.getInstance().getReference("users");
+        myRef = FirebaseDatabase.getInstance().getReference("users");
 
-        myDialog=new ProgressDialog(this);
+        myDialog = new ProgressDialog(this);
         intializeViews();
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
         loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -71,65 +71,58 @@ public class RegisterActivity extends AppCompatActivity {
         myDialog.setTitle("Register.");
         myDialog.setMessage("Please wait...");
         myDialog.show();
-        String mName=fname.getText().toString().trim();
-        String mName2=lname.getText().toString().trim();
-        String mEmail=email.getText().toString().trim();
-        String passcode=password.getText().toString().trim();
-        String passcode2=password2.getText().toString().trim();
+        String mName = fname.getText().toString().trim();
+        String mName2 = lname.getText().toString().trim();
+        String mEmail = email.getText().toString().trim();
+        String passcode = password.getText().toString().trim();
+        String passcode2 = password2.getText().toString().trim();
 
-        if (!mName.isEmpty()){
-            if (!mName2.isEmpty()){
-                if (!mEmail.isEmpty()){
-                    if (!passcode.isEmpty()){
-                        if (passcode.length()>=6){
-                            if (!passcode2.isEmpty()){
-                                if (passcode.equals(passcode2)){
+        if (!mName.isEmpty()) {
+            if (!mName2.isEmpty()) {
+                if (!mEmail.isEmpty()) {
+                    if (!passcode.isEmpty()) {
+                        if (passcode.length() >= 6) {
+                            if (!passcode2.isEmpty()) {
+                                if (passcode.equals(passcode2)) {
 
-                                    doRegister(mName,mName2,mEmail,passcode);
+                                    doRegister(mName, mName2, mEmail, passcode);
 
-                                }
-                                else {
+                                } else {
                                     myDialog.dismiss();
                                     Toast.makeText(this, "Password Mismatch!!!", Toast.LENGTH_LONG).show();
                                 }
 
-                            }
-                            else {
+                            } else {
                                 myDialog.dismiss();
                                 password2.setError("This field is required");
                                 password2.requestFocus();
                             }
 
-                        }
-                        else {
+                        } else {
                             myDialog.dismiss();
                             password.setError("Must be 6 or more characters long");
                             password.requestFocus();
                         }
 
-                    }
-                    else {
+                    } else {
                         myDialog.dismiss();
                         password.setError("Password is required");
                         password.requestFocus();
                     }
 
-                }
-                else {
+                } else {
                     myDialog.dismiss();
                     email.setError("Email is required");
                     email.requestFocus();
                 }
 
-            }
-            else {
+            } else {
                 myDialog.dismiss();
                 lname.setError("LastName is required");
                 lname.requestFocus();
             }
 
-        }
-        else {
+        } else {
             myDialog.dismiss();
             fname.setError("FirstName cannot be Empty");
             fname.requestFocus();
@@ -144,32 +137,43 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            String userId= Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+                            String userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
-                            HashMap<String, Object>hashMap=new HashMap<>();
-                            hashMap.put("userId",userId);
-                            hashMap.put("name",mName);
-                            hashMap.put("l_name",mName2);
-                            hashMap.put("email",mEmail);
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("userId", userId);
+                            hashMap.put("firstName", mName);
+                            hashMap.put("lastName", mName2);
+                            hashMap.put("Email", mEmail);
                             myRef.child(userId).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
+                                    if (task.isSuccessful()) {
                                         user = mAuth.getCurrentUser();
                                         myDialog.dismiss();
                                         Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_LONG).show();
-                                        Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                    else {
+                                        sendVerificationEmail();
+
+                                        // User is signed in
+                                        // NOTE: this Activity should get onpen only when the user is not signed in, otherwise
+                                        // the user will receive another verification email.
+                                        if (user != null) {
+                                            sendVerificationEmail();
+                                            Toast.makeText(RegisterActivity.this, "Verification Link sent", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Toast.makeText(RegisterActivity.this, "Error Sending verification link", Toast.LENGTH_LONG).show();
+                                        }
+
+//                                        Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+//                                        startActivity(intent);
+//                                        finish();
+                                    } else {
                                         Toast.makeText(RegisterActivity.this, "Try Again,An Error Occurred", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    String error=e.getMessage();
+                                    String error = e.getMessage();
                                     Toast.makeText(RegisterActivity.this, error, Toast.LENGTH_LONG).show();
                                 }
                             });
@@ -185,20 +189,53 @@ public class RegisterActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                String error=e.getMessage();
+                String error = e.getMessage();
                 Toast.makeText(RegisterActivity.this, error, Toast.LENGTH_LONG).show();
             }
         });
 
     }
 
+    private void sendVerificationEmail() {
+        {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+            user.sendEmailVerification()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                // email sent
+
+
+                                // after email is sent just logout the user and finish this activity
+                                FirebaseAuth.getInstance().signOut();
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                // email not sent, so display message and restart the activity or do whatever you wish to do
+
+                                //restart this activity
+                                overridePendingTransition(0, 0);
+                                finish();
+                                overridePendingTransition(0, 0);
+                                startActivity(getIntent());
+
+                            }
+                        }
+                    });
+        }
+    }
+
     private void intializeViews() {
-        fname=findViewById(R.id.editTextFirstName);
-        lname=findViewById(R.id.editTextLastName);
-        email=findViewById(R.id.editTextEmailRegister);
-        password=findViewById(R.id.editTextPasswordRegister);
-        password2=findViewById(R.id.editTextRe_PasswordRegister);
-        loginText=findViewById(R.id.textViewRegister);
-        regButton=findViewById(R.id.registerButton);
+        fname = findViewById(R.id.editTextFirstName);
+        lname = findViewById(R.id.editTextLastName);
+        email = findViewById(R.id.editTextEmailRegister);
+        password = findViewById(R.id.editTextPasswordRegister);
+        password2 = findViewById(R.id.editTextRe_PasswordRegister);
+        loginText = findViewById(R.id.textViewRegister);
+        regButton = findViewById(R.id.registerButton);
     }
 }
+

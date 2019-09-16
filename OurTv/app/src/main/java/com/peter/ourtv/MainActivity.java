@@ -33,10 +33,10 @@ private String channel_1;
 
         Intent intent=getIntent();
         channel_1=intent.getStringExtra("channel");
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
-
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//
+//
 //        FloatingActionButton fab = findViewById(R.id.fabEmail);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override

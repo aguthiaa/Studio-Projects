@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20sp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Username:"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"/>
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="username..."
+        android:layout_below="@+id/textView1"/>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/usernameEditText"
+        android:text="Password:"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"/>
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="password..."
+        android:layout_below="@+id/textView2"/>
+    <Button
+        android:id="@+id/addUserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_below="@id/passwordEditText"
+        android:text="Add User"
+        android:textAllCaps="false"
+        android:onClick="addUser"/>
+    <Button
+        android:id="@+id/viewDataButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordEditText"
+        android:layout_marginLeft="100dp"
+        android:layout_toRightOf="@id/addUserButton"
+        android:text="View Data"
+        android:textAllCaps="false"
+        android:onClick="viewdata"/>
+    <EditText
+        android:id="@+id/currentNameEditText"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="current name..."
+        android:layout_below="@+id/addUserButton"/>
+    <EditText
+    android:id="@+id/newNameEditText"
+        android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:hint="new name..."
+    android:layout_below="@+id/currentNameEditText"/>
+    <EditText
+    android:id="@+id/deleteNameEditText"
+        android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:hint="Enter name to delete..."
+    android:layout_below="@+id/newNameEditText"/>
+
+    <Button
+        android:id="@+id/updateUserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_below="@id/currentNameEditText"
+        android:layout_toRightOf="@id/newNameEditText"
+        android:text="Update Name"
+        android:textAllCaps="false"
+        android:onClick="update"/>
+    <Button
+        android:id="@+id/deleteUserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newNameEditText"
+        android:layout_marginStart="40dp"
+        android:layout_toRightOf="@id/deleteNameEditText"
+        android:text="Delete"
+        android:textAllCaps="false"
+        android:onClick="delete"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_below="@id/deleteNameEditText"
+        android:background="#888A85">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <TextView
+        android:id="@+id/listDataView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        />
+    </LinearLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>

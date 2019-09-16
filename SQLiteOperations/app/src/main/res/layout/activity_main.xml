@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="username:"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:textStyle="italic"/>
+    <EditText
+        android:id="@+id/userNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Enter username:"
+        android:layout_below="@id/textView1"/>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Password:"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/userNameEditText"
+        android:textSize="20dp"
+        android:textStyle="italic"/>
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Password:"
+        android:layout_below="@id/textView2"
+        android:inputType="textPassword"/>
+    <Button
+        android:id="@+id/buttonAddUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordEditText"
+        android:layout_marginStart="60dp"
+        android:text="Add User"
+        android:textAllCaps="false"
+        android:textStyle="bold|italic"
+        android:onClick="addUser"/>
+    <Button
+        android:id="@+id/buttonViewData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordEditText"
+        android:layout_marginLeft="90dp"
+        android:layout_toRightOf="@id/buttonAddUser"
+        android:text="View Data"
+        android:textAllCaps="false"
+        android:textStyle="bold|italic"
+        android:onClick="viewdata"/>
+
+    <EditText
+        android:id="@+id/currentNameEditText"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Current Name:"
+        android:layout_below="@id/buttonViewData" />
+    <EditText
+    android:id="@+id/newNameEditText"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:hint="New name:"
+    android:layout_below="@id/currentNameEditText"/>
+    <EditText
+    android:id="@+id/deleteNameEditText"
+        android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:hint="Enter name to delete"
+    android:layout_below="@id/newNameEditText"/>
+
+    <Button
+        android:id="@+id/buttonUpdateName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentNameEditText"
+        android:layout_toRightOf="@+id/newNameEditText"
+        android:layout_marginStart="20dp"
+        android:text="Update Name"
+        android:textAllCaps="false"
+        android:textStyle="bold|italic"
+        android:onClick="update"/>
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newNameEditText"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/deleteNameEditText"
+        android:text="Delete"
+        android:textAllCaps="false"
+        android:textStyle="bold|italic"
+        android:onClick="delete"/>
+
+</RelativeLayout>

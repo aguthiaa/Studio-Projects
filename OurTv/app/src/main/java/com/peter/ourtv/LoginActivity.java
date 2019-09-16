@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog mDialog;
     private EditText email,password;
     private Button loginBtn;
-    private TextView regText;
+    private TextView regText,forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +56,16 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(LoginActivity.this,ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
+
 
     private void login() {
 
@@ -121,5 +129,6 @@ public class LoginActivity extends AppCompatActivity {
         password=findViewById(R.id.editTextPasswordLogin);
         loginBtn=findViewById(R.id.loginButton);
         regText=findViewById(R.id.textViewLogin);
+        forgotPassword=findViewById(R.id.textViewForgotPassword);
     }
 }

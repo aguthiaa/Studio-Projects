@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9B96E"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/logoTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:padding="16dp"
+        android:fontFamily="cursive"
+       android:textAlignment="center"
+        android:text="Chat Yetu." />
+
+    
+    <ListView
+        android:id="@+id/chatRoomView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/chatRoomEditText"
+        android:layout_below="@id/logoTextView"
+        android:layout_marginBottom="@dimen/viewPadding"
+        android:layout_marginTop="@dimen/commonMargins">
+    </ListView>
+
+    <EditText
+        android:id="@+id/chatRoomEditText"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:fontFamily="casual"
+       android:layout_marginBottom="@dimen/viewPadding"
+        android:hint="Add chat room"/>
+    <Button
+        android:id="@+id/createChatRoomButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/viewPadding"
+        android:layout_toRightOf="@id/chatRoomEditText"
+        android:text="Add Room"
+        android:textColor="#C40C0C"
+        android:fontFamily="casual"
+        android:textAllCaps="false"
+        />
+
+
+
+</RelativeLayout>
