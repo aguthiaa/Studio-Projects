@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    tools:context=".MessagesActivity">
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleTextView2"
+        android:layout_above="@id/messageEditText"
+        android:layout_marginBottom="@dimen/margin_bottom">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_bottom"
+            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"/>
+    </ScrollView>
+    <TextView
+        android:id="@+id/titleTextView2"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Android Chat Application"
+        android:fontFamily="sans-serif-condensed"
+        android:textStyle="bold"
+        android:textColor="@color/title_text_color"
+        android:background="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textAlignment="center"/>
+    <EditText
+        android:id="@+id/messageEditText"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:hint="Type message"
+        android:fontFamily="casual"/>
+    <ImageButton
+        android:id="@+id/sendMessageButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/messageEditText"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:src="@drawable/ic_near_me_black_24dp"
+        android:background="@color/colorPrimary"/>
+
+</RelativeLayout>

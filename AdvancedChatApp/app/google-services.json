@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "805322859673",
+    "firebase_url": "https://advancedchatapp-cff64.firebaseio.com",
+    "project_id": "advancedchatapp-cff64",
+    "storage_bucket": "advancedchatapp-cff64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805322859673:android:6be37251219d46df098408",
+        "android_client_info": {
+          "package_name": "com.peter.advancedchatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805322859673-dmhh0589j3t7r3kmpphq5aca68ar81dn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.peter.advancedchatapp",
+            "certificate_hash": "4f2ee897fe3255dfa506c05d3177ecaad376efe1"
+          }
+        },
+        {
+          "client_id": "805322859673-dqbe8rl2c68n54ha8a9iqjorcdjpo0i2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2ZQfVA2gUGTOFYEvQVGhKm-0oxVSvV28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805322859673-dqbe8rl2c68n54ha8a9iqjorcdjpo0i2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
