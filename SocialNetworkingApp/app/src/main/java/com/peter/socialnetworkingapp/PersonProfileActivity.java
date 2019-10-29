@@ -1,13 +1,18 @@
 package com.peter.socialnetworkingapp;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,8 +32,8 @@ public class PersonProfileActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference userRef,profileUsersRef;
-    private String senderUserID,receiverUserID;
+    private DatabaseReference userRef,friendRequestRef,friendsRef;
+    private String senderUserID,receiverUserID,CURRENT_STATE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,8 @@ public class PersonProfileActivity extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         senderUserID=mAuth.getCurrentUser().getUid();
         userRef= FirebaseDatabase.getInstance().getReference().child("Users");
+        friendRequestRef=FirebaseDatabase.getInstance().getReference().child("FriendRequests");
+        friendsRef=FirebaseDatabase.getInstance().getReference().child("Friends");
 
         initViews();
 
@@ -96,11 +103,9 @@ public class PersonProfileActivity extends AppCompatActivity {
                         person_relationship_satus.setText("Relationship: "+mRelationship);
                     }
                 }
+                
+                maintainSendAndReceiveFriendRequestButtonText();
 
-                else {
-
-                    //To do...
-                }
 
             }
 
@@ -109,7 +114,222 @@ public class PersonProfileActivity extends AppCompatActivity {
 
             }
         });
+
+        decline_friend_request.setVisibility(View.INVISIBLE);
+        decline_friend_request.setEnabled(false);
+
+        if (!senderUserID.equals(receiverUserID)){
+
+
+            send_friend_request.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    send_friend_request.setEnabled(false);
+
+                    if (CURRENT_STATE.equals("not_friends")){
+
+                        sendFriendRequest();
+
+                    }
+
+                    if (CURRENT_STATE.equals("request_sent")){
+
+                        cancelFriendRequest();
+
+                    }
+
+                    if (CURRENT_STATE.equals("request_received")){
+
+                        acceptFriendRequest();
+                    }
+
+                }
+            });
+
+
+        }
+        else {
+
+            decline_friend_request.setVisibility(View.INVISIBLE);
+            send_friend_request.setVisibility(View.INVISIBLE);
+        }
     }
+
+
+
+    private void acceptFriendRequest() {
+    }
+
+
+
+
+    private void cancelFriendRequest() {
+
+        friendRequestRef.child(senderUserID).child(receiverUserID).removeValue()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if (task.isSuccessful()){
+
+                            friendRequestRef.child(receiverUserID).child(senderUserID).removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+
+                                            if (task.isSuccessful()){
+
+                                                send_friend_request.setEnabled(true);
+                                                CURRENT_STATE = "not_friends";
+                                                send_friend_request.setText("Send Friend Request");
+
+                                                decline_friend_request.setVisibility(View.INVISIBLE);
+                                                decline_friend_request.setEnabled(false);
+                                            }
+                                            else {
+
+                                                Toast.makeText(PersonProfileActivity.this, "Error occurred", Toast.LENGTH_SHORT).show();
+                                            }
+
+
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                    String error = e.getMessage();
+
+                                    Toast.makeText(PersonProfileActivity.this, error, Toast.LENGTH_LONG).show();
+
+                                }
+                            });
+                        }
+                        else {
+
+                            Toast.makeText(PersonProfileActivity.this, "Error occurred", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                String error=e.getMessage();
+
+                Toast.makeText(PersonProfileActivity.this, error, Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
+
+
+
+
+    private void maintainSendAndReceiveFriendRequestButtonText() {
+
+        friendRequestRef.child(senderUserID)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        if (dataSnapshot.hasChild(receiverUserID)){
+
+                            String request_type=dataSnapshot.child(receiverUserID).child("request_type").getValue().toString();
+
+                            if (request_type.equals("sent")){
+
+                                CURRENT_STATE = "request_sent";
+                                send_friend_request.setText("Cancel Friend Request");
+
+                                decline_friend_request.setVisibility(View.INVISIBLE);
+                                decline_friend_request.setEnabled(false);
+                            }
+
+                            else if (request_type.equals("received")){
+
+
+                                CURRENT_STATE ="request_received";
+                                send_friend_request.setText("Accept Friend Request");
+
+                                decline_friend_request.setVisibility(View.VISIBLE);
+                                decline_friend_request.setEnabled(true);
+                            }
+                        }
+                        else {
+                            //To do...
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+
+
+
+    private void sendFriendRequest() {
+
+        friendRequestRef.child(senderUserID).child(receiverUserID).child("request_type").setValue("sent")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if (task.isSuccessful()){
+
+                    friendRequestRef.child(receiverUserID).child(senderUserID).child("request_type").setValue("received")
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if (task.isSuccessful()){
+
+                                        send_friend_request.setEnabled(true);
+                                        CURRENT_STATE = "request_sent";
+                                        send_friend_request.setText("Cancel Friend Request");
+
+                                        decline_friend_request.setVisibility(View.INVISIBLE);
+                                        decline_friend_request.setEnabled(false);
+                                    }
+                                    else {
+
+                                        Toast.makeText(PersonProfileActivity.this, "Error occurred", Toast.LENGTH_SHORT).show();
+                                    }
+
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            String error = e.getMessage();
+
+                            Toast.makeText(PersonProfileActivity.this, error, Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+                }
+                else {
+
+                    Toast.makeText(PersonProfileActivity.this, "Error occurred", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                String error=e.getMessage();
+
+                Toast.makeText(PersonProfileActivity.this, error, Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
+
 
 
 
@@ -125,6 +345,8 @@ public class PersonProfileActivity extends AppCompatActivity {
         person_relationship_satus=(TextView) findViewById(R.id.person_profile_relationship_status);
         send_friend_request=(Button) findViewById(R.id.person_profile_send_friend_request);
         decline_friend_request=(Button) findViewById(R.id.person_profile_decline_friend_request);
+
+        CURRENT_STATE = "not_friends";
     }
 
 

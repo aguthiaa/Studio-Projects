@@ -55,6 +55,8 @@ public class PostActivity extends AppCompatActivity {
     private DatabaseReference userRef, postRef;
     private FirebaseAuth mAuth;
 
+    private long countPosts = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -244,6 +246,29 @@ public class PostActivity extends AppCompatActivity {
 
     private void savingPostInformationToDatabase() {
 
+        postRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                if (dataSnapshot.exists()){
+
+                    countPosts=dataSnapshot.getChildrenCount();
+                }
+
+                else {
+
+                    countPosts = 0;
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         userRef.child(current_user_ID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -264,6 +289,7 @@ public class PostActivity extends AppCompatActivity {
                     postsMap.put("postImage", downloadUrl);
                     postsMap.put("profileimage", userProfileImage);
                     postsMap.put("fullname", userFullname);
+                    postsMap.put("counter", countPosts);
 
 
                     postRef.child(current_user_ID + postRandomName).updateChildren(postsMap).addOnCompleteListener(new OnCompleteListener() {
