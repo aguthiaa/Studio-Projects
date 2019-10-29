@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/basic_calculator"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_top"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@color/colorPrimary"/>
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView1"
+        android:layout_centerHorizontal="true"
+        android:hint="first number"/>
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_top"
+        android:hint="@string/second_number"/>
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText2"
+        android:layout_marginStart="@dimen/margin_start"
+        android:text="@string/add"
+        android:textStyle="bold"/>
+    <Button
+        android:id="@+id/buttonMinus"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText2"
+        android:layout_toRightOf="@id/buttonAdd"
+        android:text="@string/minus"
+        android:textStyle="bold"/>
+    <Button
+        android:id="@+id/buttonMultiply"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText2"
+        android:layout_toRightOf="@id/buttonMinus"
+        android:text="@string/multiply"
+        android:textStyle="bold"/>
+    <Button
+        android:id="@+id/buttonDivide"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText2"
+        android:layout_toRightOf="@id/buttonMultiply"
+        android:text="@string/divide"
+        android:textStyle="bold"/>
+    <Button
+        android:id="@+id/buttonModulus"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText2"
+        android:layout_toRightOf="@id/buttonDivide"
+        android:text="@string/modulus"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

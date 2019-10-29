@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Toggle Button2</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="all_on">All On</string>
+    <string name="all_off">All Off</string>
+</resources>

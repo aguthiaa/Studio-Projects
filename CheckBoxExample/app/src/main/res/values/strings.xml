@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CheckBoxExample</string>
+    <string name="pizza">Pizza</string>
+    <string name="coffee">Coffee</string>
+    <string name="burger">Burger</string>
+    <string name="order">Order</string>
+</resources>

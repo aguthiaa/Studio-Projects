@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/custom_textbox_example"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/text_margin"
+        android:textSize="@dimen/text_size"
+        android:fontFamily="casual"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_top"
+        android:gravity="center">
+
+
+        <CheckBox
+            android:id="@+id/pizzaCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/pizza"
+            android:button="@drawable/ic_check_box_outline_blank_black_24dp" />
+        <CheckBox
+            android:id="@+id/coffeeCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/coffee"
+            android:button="@drawable/ic_check_box_outline_blank_black_24dp" />
+        <CheckBox
+            android:id="@+id/burgerCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/burger"
+            android:button="@drawable/ic_check_box_outline_blank_black_24dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/orderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/order"
+        android:textAllCaps="false"/>
+
+
+
+</LinearLayout>

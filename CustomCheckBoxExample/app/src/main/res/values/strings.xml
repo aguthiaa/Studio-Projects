@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CustomCheckBoxExample</string>
+    <string name="order">Order</string>
+    <string name="pizza">Pizza</string>
+    <string name="coffee">Coffee</string>
+    <string name="burger">Burger</string>
+    <string name="custom_textbox_example">Custom CheckBox Example</string>
+</resources>
