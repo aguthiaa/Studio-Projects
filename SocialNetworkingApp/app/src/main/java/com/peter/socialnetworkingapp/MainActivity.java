@@ -32,6 +32,10 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -195,6 +199,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public  void updateUserStatus(String state)
+    {
+        String saveCurrentDate, saveCurrentTime;
+
+        Calendar calFordate=Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+        saveCurrentDate=currentDate.format(calFordate.getTime());
+
+        Calendar calForTime = Calendar.getInstance();
+        SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm a");
+        saveCurrentTime =currentTime.format(calForTime.getTime());
+
+        Map currentStateMap = new HashMap();
+        currentStateMap.put("time",saveCurrentTime);
+        currentStateMap.put("date",saveCurrentDate);
+        currentStateMap.put("type",state);
+
+        userRef.child(currentUserID).child("UserState").updateChildren(currentStateMap);
+    }
+
 
 
 
@@ -297,6 +321,8 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseRecyclerAdapter.startListening();
         postList.setAdapter(firebaseRecyclerAdapter);
+
+        updateUserStatus("online");
 
 
     }
@@ -449,7 +475,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
                 
             case R.id.nav_friends:
-                Toast.makeText(this, "Friends", Toast.LENGTH_SHORT).show();
+                sendUserToFriendsActivity();
                 break;
                 
             case R.id.nav_find_friends:
@@ -457,7 +483,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
                 
             case R.id.nav_messages:
-                Toast.makeText(this, "Messages", Toast.LENGTH_SHORT).show();
+                sendUserToFriendsActivity();
                 break;
                 
             case R.id.nav_settings:
@@ -468,6 +494,7 @@ public class MainActivity extends AppCompatActivity {
                 
             case R.id.nav_logout:
 
+                updateUserStatus("offline");
                 mAuth.signOut();
 
                 sendUserToLoginActivity();
@@ -476,7 +503,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
 
 
     private void initViews() {
@@ -579,6 +605,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent =new Intent(MainActivity.this, FindFriendsActivity.class);
         startActivity(intent);
     }
+
+
+    private void sendUserToFriendsActivity() {
+
+        Intent intent =new Intent(MainActivity.this,FriendsActivity.class);
+        startActivity(intent);
+    }
+
 
 
 

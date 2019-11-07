@@ -45,6 +45,8 @@ public class LoginActivity extends AppCompatActivity {
     private final static int RC_SIGN_IN=1;
     private GoogleApiClient mGoogleSignInClient;
 
+    private Boolean emailAddressChecker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -231,11 +233,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()){
 
-                    sendUserToMainActivity();
-
                     mDialog.dismiss();
 
-                    Toast.makeText(LoginActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
+                   verifyUserEmailAddress();
 
                 }
 
@@ -261,6 +261,23 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private  void verifyUserEmailAddress(){
+
+        FirebaseUser user=mAuth.getCurrentUser();
+        emailAddressChecker=user.isEmailVerified();
+
+        if (emailAddressChecker)
+        {
+
+            sendUserToMainActivity();
+        }
+        else
+        {
+            Toast.makeText(this, "Please Verify Your Account", Toast.LENGTH_LONG).show();
+            mAuth.signOut();
+        }
     }
 
 

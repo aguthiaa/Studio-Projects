@@ -1,6 +1,9 @@
  package com.peter.socialnetworkingapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,13 +24,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
     private CircleImageView profile_image;
     private TextView profile_name,profile_user_name,profile_status,profile_country,profile_dob,profile_gender,profile_relationship_status;
+    private Button postsBtn,friendsBtn;
 
     private Toolbar mToolbar;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference userRef;
+    private DatabaseReference userRef,friendsRef, postsRef;
 
     private String currentUserID;
+
+    private int countFriends = 0, countPosts = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
         mAuth=FirebaseAuth.getInstance();
         currentUserID=mAuth.getCurrentUser().getUid();
         userRef= FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID);
+        friendsRef=FirebaseDatabase.getInstance().getReference().child("Friends");
+        postsRef=FirebaseDatabase.getInstance().getReference().child("Posts");
+
+
 
 
         userRef.addValueEventListener(new ValueEventListener() {
@@ -110,8 +120,88 @@ import de.hdodenhof.circleimageview.CircleImageView;
             }
         });
 
+
+
+        friendsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                sendUserToFriendsActivity();
+
+            }
+        });
+
+        postsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                sendUserToMyPostsActivity();
+            }
+        });
+
+        postsRef.orderByChild("uid")
+                .startAt(currentUserID).endAt(currentUserID + "\uf8ff")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                    {
+                        if (dataSnapshot.exists())
+                        {
+                            countPosts = (int) dataSnapshot.getChildrenCount();
+                            postsBtn.setText(countPosts + " Posts");
+
+                        }
+                        else
+                        {
+                            postsBtn.setText("0 Posts");
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
+        friendsRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+
+                if (dataSnapshot.exists())
+                {
+                    countFriends = (int) dataSnapshot.getChildrenCount();
+                    friendsBtn.setText(countFriends + " Friends");
+
+                }
+                else
+                {
+                    friendsBtn.setText("0 Friends");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+
+            }
+        });
+
     }
 
+     private void sendUserToFriendsActivity() {
+
+         Intent intent=new Intent(ProfileActivity.this, FriendsActivity.class);
+         startActivity(intent);
+     }
+     private void sendUserToMyPostsActivity() {
+
+         Intent intent=new Intent(ProfileActivity.this, MyPostsActivity.class);
+         startActivity(intent);
+     }
 
 
      private void initViews() {
@@ -123,6 +213,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
         profile_dob=(TextView) findViewById(R.id.profile_date_of_birth_textView);
         profile_gender=(TextView) findViewById(R.id.profile_gender_textView);
         profile_relationship_status=(TextView) findViewById(R.id.profile_relationship_status_textView);
+
+        postsBtn=(Button) findViewById(R.id.profile_posts_button);
+        friendsBtn=(Button) findViewById(R.id.profile_number_of_friends_button);
      }
 
 

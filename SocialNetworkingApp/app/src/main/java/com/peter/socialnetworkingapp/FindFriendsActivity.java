@@ -100,7 +100,7 @@ public class FindFriendsActivity extends AppCompatActivity {
                         holder.setFullname(model.getFullname());
                         holder.setStatus(model.getStatus());
 
-                        holder.mView.setOnClickListener(new View.OnClickListener() {
+                        holder.mView.setOnClickListener( new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
 

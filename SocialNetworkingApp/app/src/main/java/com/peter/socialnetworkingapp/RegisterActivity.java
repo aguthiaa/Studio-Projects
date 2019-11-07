@@ -126,14 +126,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()){
 
+                    sendEmailVerificationMessage();
+
                     mDialog.dismiss();
-
-                    Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_LONG).show();
-
-                    Intent setUpintent=new Intent(RegisterActivity.this,SetupActivity.class);
-                    setUpintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(setUpintent);
-                    finish();
 
                 }
                 else {
@@ -177,6 +172,44 @@ public class RegisterActivity extends AppCompatActivity {
         super.onStart();
     }
 
+    private void sendEmailVerificationMessage()
+    {
+
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null)
+        {
+            user.sendEmailVerification()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            if (task.isSuccessful())
+                            {
+
+                                Toast.makeText(RegisterActivity.this, "Registered successfully,verify your account", Toast.LENGTH_LONG).show();
+                                sendUserToLoginActivity();
+                                mAuth.signOut();
+                            }
+                            else
+                            {
+                                Toast.makeText(RegisterActivity.this, "Error occurred", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                    String error =e.getMessage();
+
+                    Toast.makeText(RegisterActivity.this, error, Toast.LENGTH_LONG).show();
+                    mAuth.signOut();
+
+                }
+            });
+        }
+    }
+
 
 
     private void sendUserTomainActivity() {
@@ -186,6 +219,15 @@ public class RegisterActivity extends AppCompatActivity {
         loginToMainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         startActivity(loginToMainIntent);
+        finish();
+
+
+    }
+    private void sendUserToLoginActivity() {
+
+        Intent loginIntent=new Intent(RegisterActivity.this,LoginActivity.class);
+        loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(loginIntent);
         finish();
 
 

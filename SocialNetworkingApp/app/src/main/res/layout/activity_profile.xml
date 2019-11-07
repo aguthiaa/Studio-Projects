@@ -101,6 +101,38 @@
                 android:layout_marginTop="@dimen/inputs_margin_top"
                 android:textSize="18sp"/>
 
+            <Button
+                android:id="@+id/profile_posts_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="No of Posts"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:textAllCaps="false"
+                android:layout_below="@id/profile_relationship_status_textView"
+                android:textSize="14sp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@android:color/background_light"
+                android:textStyle="bold"/>
+            <Button
+                android:id="@+id/profile_number_of_friends_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="No of Friends"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="@dimen/inputs_margin_top"
+                android:layout_marginTop="40dp"
+                android:textAllCaps="false"
+                android:layout_below="@id/profile_relationship_status_textView"
+                android:textSize="14sp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@android:color/background_light"
+                android:textStyle="bold"/>
+
         </RelativeLayout>
 
     </ScrollView>

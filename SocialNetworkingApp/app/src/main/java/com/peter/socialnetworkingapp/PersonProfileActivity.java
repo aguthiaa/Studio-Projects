@@ -21,6 +21,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PersonProfileActivity extends AppCompatActivity {
@@ -33,7 +36,7 @@ public class PersonProfileActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference userRef,friendRequestRef,friendsRef;
-    private String senderUserID,receiverUserID,CURRENT_STATE;
+    private String senderUserID,receiverUserID,CURRENT_STATE,saveCurrentDate,saveCurrentTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +147,11 @@ public class PersonProfileActivity extends AppCompatActivity {
                         acceptFriendRequest();
                     }
 
+                    if (CURRENT_STATE.equals("friends")){
+
+                        unFriendAnExistingFriend();
+                    }
+
                 }
             });
 
@@ -158,7 +166,154 @@ public class PersonProfileActivity extends AppCompatActivity {
 
 
 
+    private void unFriendAnExistingFriend() {
+
+        friendsRef.child(senderUserID).child(receiverUserID).removeValue()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if (task.isSuccessful()){
+
+                            friendsRef.child(receiverUserID).child(senderUserID).removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+
+                                            if (task.isSuccessful()){
+
+                                                send_friend_request.setEnabled(true);
+
+                                                CURRENT_STATE="not_friends";
+
+                                                send_friend_request.setText("Send Friend Request");
+
+                                                decline_friend_request.setVisibility(View.INVISIBLE);
+                                                decline_friend_request.setEnabled(false);
+
+                                            }
+                                        }
+                                    });
+                        }
+
+                    }
+                });
+    }
+
+
+
+
+
     private void acceptFriendRequest() {
+
+        Calendar calForDate=Calendar.getInstance();
+        SimpleDateFormat currentDate=new SimpleDateFormat("dd-MMMM-yy");
+        saveCurrentDate=currentDate.format(calForDate.getTime());
+
+//        Calendar calForTime=Calendar.getInstance();
+//        SimpleDateFormat currentTime=new SimpleDateFormat("HH:mm");
+//        saveCurrentTime=currentTime.format(calForTime.getTime());
+        friendsRef.child(senderUserID).child(receiverUserID).child("date").setValue(saveCurrentDate)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+
+                        if (task.isSuccessful()){
+
+
+                            friendsRef.child(receiverUserID).child(senderUserID).child("date").setValue(saveCurrentDate)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if (task.isSuccessful()){
+
+                                        friendRequestRef.child(senderUserID).child(receiverUserID).removeValue()
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                                        if (task.isSuccessful()){
+
+                                                            friendRequestRef.child(receiverUserID).child(senderUserID).removeValue()
+                                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                        @Override
+                                                                        public void onComplete(@NonNull Task<Void> task) {
+
+                                                                            if (task.isSuccessful()){
+
+                                                                                send_friend_request.setEnabled(true);
+                                                                                CURRENT_STATE = "friends";
+                                                                                send_friend_request.setText("UnFriend This Person");
+
+                                                                                decline_friend_request.setVisibility(View.INVISIBLE);
+                                                                                decline_friend_request.setEnabled(false);
+                                                                            }
+                                                                            else {
+
+                                                                                Toast.makeText(PersonProfileActivity.this, "Error occurred", Toast.LENGTH_SHORT).show();
+                                                                            }
+
+
+                                                                        }
+                                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+
+                                                                    String error = e.getMessage();
+
+                                                                    Toast.makeText(PersonProfileActivity.this, error, Toast.LENGTH_LONG).show();
+
+                                                                }
+                                                            });
+                                                        }
+                                                        else {
+
+                                                            Toast.makeText(PersonProfileActivity.this, "Error occurred", Toast.LENGTH_SHORT).show();
+                                                        }
+
+                                                    }
+                                                }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+
+                                                String error=e.getMessage();
+
+                                                Toast.makeText(PersonProfileActivity.this, error, Toast.LENGTH_LONG).show();
+
+                                            }
+                                        });
+                                    }
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                    String error=e.getMessage();
+                                    Toast.makeText(PersonProfileActivity.this, error, Toast.LENGTH_LONG).show();
+
+                                }
+                            });
+
+                        }
+                        else {
+
+
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                String error=e.getMessage();
+                Toast.makeText(PersonProfileActivity.this, error, Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+
     }
 
 
@@ -254,10 +409,39 @@ public class PersonProfileActivity extends AppCompatActivity {
 
                                 decline_friend_request.setVisibility(View.VISIBLE);
                                 decline_friend_request.setEnabled(true);
+
+                                decline_friend_request.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        cancelFriendRequest();
+                                    }
+                                });
                             }
                         }
                         else {
-                            //To do...
+
+
+                            friendsRef.child(senderUserID).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                                    if (dataSnapshot.hasChild(receiverUserID)){
+
+                                        CURRENT_STATE ="friends";
+                                        send_friend_request.setText("UnFriend This Person");
+
+                                        decline_friend_request.setVisibility(View.INVISIBLE);
+                                        decline_friend_request.setEnabled(false);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
                         }
                     }
 
