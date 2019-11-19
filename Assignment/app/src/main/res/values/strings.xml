@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Assignment</string>
+    <string name="login">Login</string>
+    <string name="add_student_marks_and_grade">Add Student Marks And Grade</string>
+</resources>

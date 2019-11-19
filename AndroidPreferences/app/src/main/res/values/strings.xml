@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Android Preferences</string>
+    <string name="data">Data:</string>
+    <string name="store_information">Store Information</string>
+    <string name="show_information">Show Information</string>
+</resources>

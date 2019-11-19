@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_top">180dp</dimen>
+    <dimen name="button_margin_top">60dp</dimen>
+    <dimen name="all_margin">10dp</dimen>
+    <dimen name="inputs_margin_top">5dp</dimen>
+</resources>
