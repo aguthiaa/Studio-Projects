@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +22,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     private EditText username,password;
     private Button loginBtn;
+    private TextView createAccountText;
 
     FirebaseAuth mAuth;
 
@@ -34,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
         username =findViewById(R.id.username_input);
         password=findViewById(R.id.password_input);
         loginBtn=findViewById(R.id.login_Button);
+        createAccountText=findViewById(R.id.dont_have_account);
+
+
+        createAccountText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                sendUserToRegisterActivity();
+            }
+        });
+
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful())
                         {
                             Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                            Intent intent = new Intent(MainActivity.this, StudentsListActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                             finish();
@@ -90,6 +103,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void sendUserToRegisterActivity() {
+
+        Intent intent = new Intent(MainActivity.this, AdminRegisterActivity.class);
+        startActivity(intent);
+
+    }
+
 
 
 }

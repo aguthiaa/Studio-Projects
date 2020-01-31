@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    tools:context=".StudentsListActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="STUDENTS LIST"
+                android:gravity="center"
+                android:layout_margin="@dimen/all_margin"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/students_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Students List"
+                android:padding="@dimen/all_margin"
+                android:textSize="24sp"
+                android:textColor="@android:color/background_light"/>
+            <Button
+                android:id="@+id/add_student_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Student"
+                android:layout_margin="@dimen/all_margin"
+                android:background="@drawable/button"
+                android:textColor="@android:color/background_light"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

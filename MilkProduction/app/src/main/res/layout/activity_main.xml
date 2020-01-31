@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/app_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="Milk Production Register"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:fontFamily="cursive"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/morning_production"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_title"
+        android:layout_marginTop="10dp"
+        android:hint="Morning Production"
+        android:inputType="number"
+        android:textColorHint="@android:color/black"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="18sp"/>
+    <EditText
+        android:id="@+id/evening_production"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/morning_production"
+        android:hint="Evening Production"
+        android:inputType="number"
+        android:textColorHint="@android:color/black"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="18sp"/>
+    <EditText
+        android:id="@+id/food_supplements"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/evening_production"
+        android:hint="Food Supplements"
+        android:inputType="number"
+        android:textColorHint="@android:color/black"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="18sp"/>
+
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/food_supplements"
+        android:text="Save Data"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@android:color/background_light"
+        android:padding="16sp"/>
+    <Button
+        android:id="@+id/view_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_below="@+id/submit_btn"
+        android:text="View Data"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@android:color/background_light"
+        android:padding="16sp"/>
+
+
+
+
+</RelativeLayout>

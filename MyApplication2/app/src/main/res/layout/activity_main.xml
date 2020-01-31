@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/result_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"/>
+    <TextView
+        android:id="@+id/one"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="1"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/result_view"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:background="@drawable/text_bg"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/two"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="2"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/result_view"
+        android:textAlignment="center"
+        android:background="@drawable/text_bg"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/plus"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="+"
+        android:layout_below="@id/result_view"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:background="@drawable/text_bg"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/equals_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="="
+        android:background="@drawable/text_bg"
+        android:textColor="@android:color/background_light"
+        android:layout_below="@id/plus"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold"
+        android:textSize="24sp"/>
+
+</RelativeLayout>
