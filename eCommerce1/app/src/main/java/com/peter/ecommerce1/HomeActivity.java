@@ -61,8 +61,10 @@ public class HomeActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                Intent cartIntent = new Intent(HomeActivity.this, CartActivity.class);
+                startActivity(cartIntent);
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -85,6 +87,7 @@ public class HomeActivity extends AppCompatActivity {
         CircleImageView userProfileImage = headerView.findViewById(R.id.profile_image);
 
         userName.setText(Prevalent.currentOnlineUser.getFullName());
+        Picasso.get().load(Prevalent.currentOnlineUser.getProfileImage()).placeholder(R.drawable.profile).into(userProfileImage);
 
         productsView = (RecyclerView) findViewById(R.id.main_recycler_view);
 
@@ -112,7 +115,8 @@ public class HomeActivity extends AppCompatActivity {
         switch (menuItem.getItemId())
         {
             case R.id.nav_cart:
-                Toast.makeText(this, "Cart", Toast.LENGTH_SHORT).show();
+                Intent cartIntent = new Intent(HomeActivity.this, CartActivity.class);
+                startActivity(cartIntent);
                 break;
 
             case R.id.nav_orders:
@@ -161,13 +165,23 @@ public class HomeActivity extends AppCompatActivity {
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(firebaseRecyclerOptions) {
             @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model)
+            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model)
             {
                 holder.productNameText.setText(model.getProductName());
                 holder.productPrice.setText("Price = Ksh. "+model.getProductPrice());
                 holder.productDescriptionText.setText(model.getProductDescription());
 
                 Picasso.get().load(model.getProductImage()).into(holder.productImageView);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent intent = new Intent(HomeActivity.this, ProductDetailsActivity.class);
+                        intent.putExtra("pid",model.getPid());
+                        startActivity(intent);
+                    }
+                });
 
             }
 
