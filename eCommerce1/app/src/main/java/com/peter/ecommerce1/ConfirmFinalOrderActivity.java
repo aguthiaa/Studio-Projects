@@ -136,7 +136,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity
         ordersMap.put("time",saveCurrentTime);
         ordersMap.put("fullName",name);
         ordersMap.put("phoneNumber",number);
-        ordersMap.put("Email",email);
+        ordersMap.put("email",email);
         ordersMap.put("address",address);
         ordersMap.put("city",city);
         ordersMap.put("state","not shipped");
@@ -161,32 +161,11 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity
                                         {
                                             if (task.isSuccessful())
                                             {
-                                                FirebaseDatabase.getInstance().getReference()
-                                                        .child("Cart List")
-                                                        .child("Admin View")
-                                                        .child(Prevalent.currentOnlineUser.getPhoneNumber())
-                                                        .removeValue()
-                                                        .addOnCompleteListener(new OnCompleteListener<Void>()
-                                                        {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task)
-                                                            {
                                                                 Toast.makeText(ConfirmFinalOrderActivity.this, "Your Order Has Been Placed Successfully", Toast.LENGTH_LONG).show();
                                                                 Intent intent = new Intent(ConfirmFinalOrderActivity.this, HomeActivity.class);
                                                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                                 startActivity(intent);
                                                                 finish();
-                                                            }
-                                                        }).addOnFailureListener(new OnFailureListener()
-                                                {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e)
-                                                    {
-                                                        String error = e.getMessage();
-
-                                                        Toast.makeText(ConfirmFinalOrderActivity.this, error, Toast.LENGTH_LONG).show();
-                                                    }
-                                                });
                                             }
                                         }
                                     }).addOnFailureListener(new OnFailureListener()

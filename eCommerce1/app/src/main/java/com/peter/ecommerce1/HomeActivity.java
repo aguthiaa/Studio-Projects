@@ -50,10 +50,23 @@ public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    private String userType ="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null)
+        {
+            userType = getIntent().getExtras().get("Admin").toString();
+        }
+
+
+
+        productsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+
         Paper.init(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -86,8 +99,11 @@ public class HomeActivity extends AppCompatActivity {
         TextView userName = headerView.findViewById(R.id.user_name);
         CircleImageView userProfileImage = headerView.findViewById(R.id.profile_image);
 
-        userName.setText(Prevalent.currentOnlineUser.getFullName());
-        Picasso.get().load(Prevalent.currentOnlineUser.getProfileImage()).placeholder(R.drawable.profile).into(userProfileImage);
+        if (!userType.equals("Admin"))
+        {
+            userName.setText(Prevalent.currentOnlineUser.getFullName());
+            Picasso.get().load(Prevalent.currentOnlineUser.getProfileImage()).placeholder(R.drawable.profile).into(userProfileImage);
+        }
 
         productsView = (RecyclerView) findViewById(R.id.main_recycler_view);
 
@@ -105,9 +121,6 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-
-        productsRef = FirebaseDatabase.getInstance().getReference().child("Products");
-
     }
 
     private void navMenuHandler(MenuItem menuItem)
@@ -120,7 +133,8 @@ public class HomeActivity extends AppCompatActivity {
                 break;
 
             case R.id.nav_orders:
-                Toast.makeText(this, "Orders", Toast.LENGTH_SHORT).show();
+                Intent searchIntent = new Intent(HomeActivity.this, SearchProductsActivity.class);
+                startActivity(searchIntent);
                 break;
 
 
@@ -177,9 +191,18 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                        Intent intent = new Intent(HomeActivity.this, ProductDetailsActivity.class);
-                        intent.putExtra("pid",model.getPid());
-                        startActivity(intent);
+                        if (userType.equals("Admin"))
+                        {
+                            Intent intent = new Intent(HomeActivity.this, AdminManageProductsActivity.class);
+                            intent.putExtra("pid",model.getPid());
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            Intent intent = new Intent(HomeActivity.this, ProductDetailsActivity.class);
+                            intent.putExtra("pid",model.getPid());
+                            startActivity(intent);
+                        }
                     }
                 });
 

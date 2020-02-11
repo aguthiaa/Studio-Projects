@@ -262,7 +262,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity
 
                         if (task.isSuccessful())
                         {
-                            Intent intent = new Intent(AdminAddNewProductActivity.this,HomeActivity.class);
+                            Intent intent = new Intent(AdminAddNewProductActivity.this,AdminCategoryActivity.class);
                             startActivity(intent);
                             mDialog.dismiss();
                             Toast.makeText(AdminAddNewProductActivity.this, "Product Information Successfully saved in Firebase Database", Toast.LENGTH_LONG).show();
