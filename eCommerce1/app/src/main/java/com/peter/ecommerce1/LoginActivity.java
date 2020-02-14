@@ -59,6 +59,18 @@ public class LoginActivity extends AppCompatActivity {
         imNotAnAdminLink = (TextView) findViewById(R.id.not_admin_link);
         forgotPasswordLink = (TextView) findViewById(R.id.forgot_password_link);
 
+        forgotPasswordLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+                intent.putExtra("check","login");
+                startActivity(intent);
+            }
+        });
+
+
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                 imAnAdminLink.setVisibility(View.INVISIBLE);
                 imNotAnAdminLink.setVisibility(View.VISIBLE);
                 rememberMe.setVisibility(View.INVISIBLE);
-                
+                forgotPasswordLink.setVisibility(View.INVISIBLE);
                 parentDbName ="Admins";
 
             }
@@ -89,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                 imAnAdminLink.setVisibility(View.VISIBLE);
                 imNotAnAdminLink.setVisibility(View.INVISIBLE);
                 rememberMe.setVisibility(View.VISIBLE);
+                forgotPasswordLink.setVisibility(View.VISIBLE);
 
                 parentDbName ="Users";
             }

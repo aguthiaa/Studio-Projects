@@ -76,8 +76,10 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                Intent cartIntent = new Intent(HomeActivity.this, CartActivity.class);
-                startActivity(cartIntent);
+                if (!userType.equals("Admin")) {
+                    Intent cartIntent = new Intent(HomeActivity.this, CartActivity.class);
+                    startActivity(cartIntent);
+                }
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -114,8 +116,11 @@ public class HomeActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                
-                navMenuHandler(menuItem);
+
+                if (!userType.equals("Admin")) {
+                    navMenuHandler(menuItem);
+
+                }
                 return false;
             }
         });

@@ -77,6 +77,19 @@
             android:text="Apply Changes"
             android:textAllCaps="false"
             android:textColor="@android:color/background_light"/>
+        <Button
+            android:id="@+id/manage_delete_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/manage_changes_btn"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:background="@color/colorAccent"
+            android:padding="20dp"
+            android:text="Delete This Product"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"/>
 
     </RelativeLayout>
 

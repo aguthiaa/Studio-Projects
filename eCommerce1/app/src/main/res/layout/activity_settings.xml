@@ -102,5 +102,19 @@
         android:textColorHint="@android:color/black"
         android:layout_margin="15dp"
         android:padding="20dp"/>
+    <Button
+        android:id="@+id/settings_set_security_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Security Questions"
+        android:elevation="10dp"
+        android:textAllCaps="false"
+        android:layout_below="@id/settings_address"
+        android:textColor="@android:color/background_light"
+        android:background="@color/colorAccent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:padding="20dp"/>
 
 </RelativeLayout>
