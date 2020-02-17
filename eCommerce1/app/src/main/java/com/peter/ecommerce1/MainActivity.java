@@ -8,8 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +26,7 @@ import io.paperdb.Paper;
 public class MainActivity extends AppCompatActivity {
 
     private Button joinNow,login;
+    private TextView becomeAsellerLink;
 
 //    private String parentDbName ="Users";
     private ProgressDialog mDialog;
@@ -114,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
         joinNow = (Button) findViewById(R.id.welcome_register_button);
         login = (Button) findViewById(R.id.welcome_login_button);
+        becomeAsellerLink = (TextView) findViewById(R.id.become_a_seller_link);
 
         mDialog=new ProgressDialog(this);
 
@@ -134,6 +139,35 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        becomeAsellerLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(MainActivity.this, SellerRegisterActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null)
+        {
+            Intent intent = new Intent(MainActivity.this, SellersHomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
+    }
 }

@@ -180,7 +180,8 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
 
-        FirebaseRecyclerOptions<Products> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<Products>().setQuery(productsRef,Products.class).build();
+        FirebaseRecyclerOptions<Products> firebaseRecyclerOptions =
+                new FirebaseRecyclerOptions.Builder<Products>().setQuery(productsRef.orderByChild("productStatus").equalTo("approved"),Products.class).build();
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(firebaseRecyclerOptions) {
             @Override

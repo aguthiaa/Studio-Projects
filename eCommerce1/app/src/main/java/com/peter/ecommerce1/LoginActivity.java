@@ -177,7 +177,7 @@ public class LoginActivity extends AppCompatActivity {
                             {
                                 Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_LONG).show();
 
-                                Intent intent = new Intent(LoginActivity.this,AdminCategoryActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, SellerProductsCategoryActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 mDialog.dismiss();

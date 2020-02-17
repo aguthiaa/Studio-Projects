@@ -1,13 +1,10 @@
 package com.peter.ecommerce1;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,19 +12,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -169,7 +161,7 @@ public class AdminManageProductsActivity extends AppCompatActivity
                         if (task.isSuccessful())
                         {
                             Toast.makeText(AdminManageProductsActivity.this, "Product removed successfully", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(AdminManageProductsActivity.this, AdminCategoryActivity.class);
+                            Intent intent = new Intent(AdminManageProductsActivity.this, SellerProductsCategoryActivity.class);
                             startActivity(intent);
                             finish();
                             mDialog.dismiss();
@@ -215,7 +207,7 @@ public class AdminManageProductsActivity extends AppCompatActivity
                 if (task.isSuccessful())
                 {
                     Toast.makeText(AdminManageProductsActivity.this, "Product Details updated successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AdminManageProductsActivity.this, AdminCategoryActivity.class);
+                    Intent intent = new Intent(AdminManageProductsActivity.this, SellerProductsCategoryActivity.class);
                     startActivity(intent);
                     finish();
                     mDialog.dismiss();
